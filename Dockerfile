@@ -32,11 +32,13 @@ RUN apt update && apt install -yq \
 USER ${NB_USER}
 WORKDIR ${HOME}
 RUN mkdir -p $NOTEBOOK_PATH && \
-    git clone https://github.com/clojupyter/clojupyter.git $CLOJUPYTER_PATH
+    git clone https://github.com/klausharbo/clojupyter $CLOJUPYTER_PATH
+    
 
 # Install clpjupyter
 WORKDIR $CLOJUPYTER_PATH
-RUN make && \
+RUN git checkout clojure-1.10-nrepl-0.5.3 && \
+    make && \
     make install && \
     rm -rf $CLOJUPYTER_PATH
 
