@@ -19,6 +19,9 @@ RUN apt update && apt install -yq \
         default-jre && \
     curl -o /etc/ssl/certs/java/cacerts https://circle-downloads.s3.amazonaws.com/circleci-images/cache/linux-amd64/openjdk-9-slim-cacerts && \
     curl -o /usr/local/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein && \
+    curl -O https://download.clojure.org/install/linux-install-1.10.0.414.sh && \
+    chmod +x linux-install-1.10.0.414.sh && \
+    ./linux-install-1.10.0.414.sh && \
     chmod +x /usr/local/bin/lein && \
     lein self-install && \
     pip install jupyter && \
@@ -35,12 +38,13 @@ RUN mkdir -p $NOTEBOOK_PATH && \
     git clone https://github.com/klausharbo/clojupyter $CLOJUPYTER_PATH
     
 
-# Install clpjupyter
+# Install clojupyter
 WORKDIR $CLOJUPYTER_PATH
 RUN git checkout clojure-1.10-nrepl-0.5.3 && \
-    make && \
-    make install && \
-    rm -rf $CLOJUPYTER_PATH
+     git fetch && \
+     make # && \
+     make install && \
+#    rm -rf $CLOJUPYTER_PATH
 
 WORKDIR $NOTEBOOK_PATH
 
