@@ -36,13 +36,13 @@ USER ${NB_USER}
 WORKDIR ${HOME}
 RUN mkdir -p $NOTEBOOK_PATH && \
     git clone https://github.com/klausharbo/clojupyter $CLOJUPYTER_PATH
-    
+
 
 # Install clojupyter
 WORKDIR $CLOJUPYTER_PATH
 RUN git checkout clojure-1.10-nrepl-0.5.3 && \
      git fetch && \
-     make # && \
+     make && \
      make install && \
 #    rm -rf $CLOJUPYTER_PATH
 
