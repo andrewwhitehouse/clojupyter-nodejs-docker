@@ -19,11 +19,9 @@ RUN apt update && apt install -yq \
         default-jre && \
     curl -o /etc/ssl/certs/java/cacerts https://circle-downloads.s3.amazonaws.com/circleci-images/cache/linux-amd64/openjdk-9-slim-cacerts && \
     curl -o /usr/local/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein && \
-    curl -O https://download.clojure.org/install/linux-install-1.10.0.414.sh && \
-    chmod +x linux-install-1.10.0.414.sh && \
-    ./linux-install-1.10.0.414.sh && \
     chmod +x /usr/local/bin/lein && \
     lein self-install && \
+    echo '(defproject dummy "" :dependencies [[org.clojure/clojure "1.10.0"]])' > project.clj && lein deps && rm -f project.clj \
     pip install jupyter && \
     adduser --disabled-password \
         --gecos "Default user" \
