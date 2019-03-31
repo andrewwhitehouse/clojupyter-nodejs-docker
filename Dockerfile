@@ -35,5 +35,3 @@ WORKDIR $NOTEBOOK_PATH
 EXPOSE $PORT
 VOLUME $NOTEBOOK_PATH
 CMD ["jupyter", "notebook", "--ip=0.0.0.0"]
-
-# CMD bash
