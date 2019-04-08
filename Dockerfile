@@ -1,35 +1,29 @@
-FROM ubuntu:18.04
+FROM jupyter/minimal-notebook
 LABEL maintainer="Klaus Harbo <klaus@harbo.net>"
 
-ARG NB_USER=clojure
-ARG NB_UID=1000
-ENV HOME /home/${NB_USER}
+ARG NB_USER=jovyan
 ENV NOTEBOOK_PATH $HOME/notebooks
 ENV PORT 8888
 ENV CLOJUPYTER_PATH $HOME/clojupyter
 ENV LEIN_ROOT 1
 
 USER root
-RUN apt update && apt install -yq python-pip python-dev build-essential curl git-core default-jre imagemagick \
-	&& curl -o /etc/ssl/certs/java/cacerts \
-	   https://circle-downloads.s3.amazonaws.com/circleci-images/cache/linux-amd64/openjdk-9-slim-cacerts \
-    	&& curl -o /usr/local/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein \
-	&& chmod +x /usr/local/bin/lein \
-	&& lein self-install \
-	&& pip install jupyter \
-	&& adduser --disabled-password --gecos "Default user" --uid ${NB_UID} --home ${HOME} ${NB_USER} \
-	&& chown -R ${NB_USER}:${NB_USER} ${HOME}
+RUN    	apt update \
+	&& apt-get install -y curl openjdk-8-jdk \
+	&& curl -o /usr/local/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein \
+ 	&& chmod +x /usr/local/bin/lein \
+ 	&& lein self-install
 
 USER ${NB_USER}
 WORKDIR ${HOME}
-RUN mkdir -p $NOTEBOOK_PATH \
-	&& git clone https://github.com/clojupyter/clojupyter $CLOJUPYTER_PATH
+RUN	mkdir -p $NOTEBOOK_PATH \
+ 	&& git clone https://github.com/clojupyter/clojupyter $CLOJUPYTER_PATH
 
 WORKDIR $CLOJUPYTER_PATH
-RUN git checkout develop \
-	&& git fetch \
-	&& make \
-	&& make install
+RUN git checkout v0.2.2 \
+ 	&& git fetch \
+ 	&& make \
+ 	&& make install
 
 WORKDIR $NOTEBOOK_PATH
 EXPOSE $PORT
