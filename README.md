@@ -44,4 +44,4 @@ To build an image of clojupyter version `0.2.2` :
 CLOJUPYTER_VERSION=0.2.2 make
 ```
 
-A release of clojupyter the name assigned to `CLOJUPYTER_VERSION` must exist.
+A release of clojupyter with the name assigned to `CLOJUPYTER_VERSION` must exist.
