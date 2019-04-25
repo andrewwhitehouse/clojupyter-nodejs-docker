@@ -38,8 +38,10 @@ docker run -p 8888:8888 \
 
 ## Building the image
 
-To build the image:
+To build an image of clojupyter version `0.2.2` :
 
 ```sh
 CLOJUPYTER_VERSION=0.2.2 make
 ```
+
+A release of clojupyter the name assigned to `CLOJUPYTER_VERSION` must exist.
