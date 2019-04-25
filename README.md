@@ -12,8 +12,7 @@ This project is already published on Docker hub.  The absolutely simplest way to
 doing
 
 ```sh
-docker run -p 8888:8888 \
-	--rm simplect/clojupyter:0.2.2
+docker run -p 8888:8888 --rm simplect/clojupyter:0.2.2
 ```
 
 and following the instruction to connect to the server.  This will give an empty folder where you
