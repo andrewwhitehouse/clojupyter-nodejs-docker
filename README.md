@@ -12,7 +12,8 @@ This project is already published on Docker hub.  The absolutely simplest way to
 doing
 
 ```sh
-docker run -p 8888:8888 --rm simplect/clojupyter:0.2.2
+docker run -p 8888:8888 \
+	--rm simplect/clojupyter:0.2.2
 ```
 
 and following the instruction to connect to the server.  This will give an empty folder where you
@@ -23,7 +24,9 @@ To access existing notebooks and/or keep notebooks after the container terminate
 directory on the host machine into the `notebooks` directory in the container:
 
 ```sh
-docker run -p 8888:8888 -v /path/to/folder:/home/jovyan/notebooks --rm simplect/clojupyter:0.2.2
+docker run -p 8888:8888 \
+	-v /path/to/folder:/home/jovyan/notebooks \
+	--rm simplect/clojupyter:0.2.2
 ```
 
 If you want to load and use external libraries, mapping `$HOME/.m2` into the container will yield
