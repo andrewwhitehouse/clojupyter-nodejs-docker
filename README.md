@@ -35,3 +35,11 @@ docker run -p 8888:8888 \
 	-v /path/to/folder:/home/jovyan/notebooks \
 	--rm simplect/clojupyter:0.2.2
 ```
+
+## Building the image
+
+To build the image:
+
+```sh
+CLOJUPYTER_VERSION=0.2.2 make
+```
