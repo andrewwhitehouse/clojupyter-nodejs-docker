@@ -12,7 +12,7 @@ This project is already published on Docker hub.  The absolutely simplest way to
 doing
 
 ```sh
-docker run -p 8888:8888 --rm simplect/clojupyter:0.2.2
+docker run -p 8888:8888 --rm andrewwhitehouse/clojupyter:0.4.0
 ```
 
 and following the instruction to connect to the server.  This will give an empty folder where you
@@ -25,7 +25,7 @@ directory on the host machine into the `notebooks` directory in the container:
 ```sh
 docker run -p 8888:8888 \
 	-v /path/to/folder:/home/jovyan/notebooks \
-	--rm simplect/clojupyter:0.2.2
+	--rm simplect/clojupyter:0.4.0
 ```
 
 If you want to load and use external libraries, mapping `$HOME/.m2` into the container will yield
@@ -35,15 +35,15 @@ much better performance:
 docker run -p 8888:8888 \
 	-v $HOME/.m2:/home/jovyan/.m2 \
 	-v /path/to/folder:/home/jovyan/notebooks \
-	--rm simplect/clojupyter:0.2.2
+	--rm andrewwhitehouse/clojupyter:0.4.0
 ```
 
 ## Building the image
 
-To build an image of clojupyter version `0.2.2` :
+To build an image of clojupyter version `0.4.0` :
 
 ```sh
-CLOJUPYTER_VERSION=0.2.2 make
+CLOJUPYTER_VERSION=0.4.0 make
 ```
 
 A release of clojupyter with the name assigned to `CLOJUPYTER_VERSION` must exist.
