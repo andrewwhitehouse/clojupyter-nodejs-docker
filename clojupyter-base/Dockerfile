@@ -1,7 +1,7 @@
 FROM jupyter/minimal-notebook
 LABEL maintainer="Klaus Harbo <klaus@harbo.net>"
 
-ARG NB_USER=jovyan
+ARG NB_USER=jupyter
 ENV NOTEBOOK_PATH $HOME/notebooks
 ENV PORT 8888
 ENV CLOJUPYTER_PATH $HOME/clojupyter
