@@ -11,7 +11,7 @@ This project is already published on Docker hub.  The absolutely simplest way to
 doing
 
 ```sh
-docker run -p 8888:8888 --rm andrewwhitehouse/clojupyter:0.4.3
+docker run -p 8888:8888 --rm andrewwhitehouse/clojupyter-nodejs-docker:0.4.3
 ```
 
 and following the instruction to connect to the server.  This will give an empty folder where you
@@ -24,7 +24,7 @@ directory on the host machine into the `notebooks` directory in the container:
 ```sh
 docker run -p 8888:8888 \
 	-v /path/to/folder:/home/jovyan/notebooks \
-	--rm andrewwhitehouse/clojupyter:0.4.3
+	--rm andrewwhitehouse/clojupyter-nodejs-docker:0.4.3
 ```
 
 (I still haven't figured out why the home directory is "jovyan"; I'll eventually get around to making that more generic. But if works.)
@@ -37,7 +37,7 @@ much better performance:
 docker run -p 8888:8888 \
 	-v $HOME/.m2:/home/jovyan/.m2 \
 	-v /path/to/folder:/home/jovyan/notebooks \
-	--rm andrewwhitehouse/clojupyter:0.4.3
+	--rm andrewwhitehouse/clojupyter-nodejs-docker:0.4.3
 ```
 
 ## Building the image
